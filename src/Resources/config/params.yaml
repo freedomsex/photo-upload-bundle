@@ -1,0 +1,10 @@
+parameters:
+  path.media: 'media'
+  path.uploads: '%path.media%/uploads/'
+  path.origin: 'origin/'
+  path.thumb: 'thumb/'
+  path.web: '%kernel.project_dir%/public'
+  path.shared: '%kernel.project_dir%/../shared'
+
+  uploads_directory: "%kernel.project_dir%/%path.uploads%"
+  uploads_destination: "%uploads_directory%/%path.origin%"

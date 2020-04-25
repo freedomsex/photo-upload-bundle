@@ -1,0 +1,9 @@
+vich_uploader:
+  db_driver: orm
+  storage: file_system
+  mappings:
+    uploads:
+      uri_prefix: '%path.uploads%'
+      upload_destination: '%uploads_destination%'
+      namer: 'upload_file_namer'
+      directory_namer: 'upload_file_namer'

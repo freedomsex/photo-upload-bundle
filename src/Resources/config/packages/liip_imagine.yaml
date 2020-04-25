@@ -1,0 +1,50 @@
+liip_imagine:
+  # valid drivers options include "gd" or "gmagick" or "imagick". Default value: gd
+  resolvers:
+    default:
+      web_path:
+        web_root: "%uploads_directory%"
+        cache_prefix: 'cache'
+    public:
+      web_path:
+        web_root: "%path.web%/res"
+        cache_prefix: 'photo'
+
+  loaders:
+    default:
+      filesystem:
+        data_root: "%uploads_directory%"
+    tmp_uploads:
+      filesystem:
+        data_root: "/tmp"
+
+  cache: default
+  data_loader: default
+  default_image: '%path.uploads%thumbnail.png'
+
+  filter_sets:
+    upload:
+      cache: default
+      jpeg_quality: 80
+      format: jpg
+      default_image: null
+      data_loader: tmp_uploads
+      filters:
+        strip: ~
+        downscale:
+          max: [600, 800]
+
+    thumbnail:
+      format: png
+      cache: public
+      filters:
+        thumbnail: { size: [16, 16], mode: outbound }
+      png_compression_level: 8
+
+    preview:
+      format: jpg
+      cache: public
+      filters:
+        thumbnail: { size: [100, 100], mode: outbound }
+      jpeg_quality: 80
+      default_image: null
