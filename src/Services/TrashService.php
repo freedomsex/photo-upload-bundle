@@ -5,13 +5,13 @@ namespace FreedomSex\PhotoUploadBundle\Services;
 
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Filesystem\Filesystem;
-use FreedomSex\PhotoUploadBundle\Services\Naming\NameParser;
+use FreedomSex\PhotoUploadBundle\Services\Naming\FileNameParser;
 
 class TrashService
 {
     public function __construct(
         Finder $finder,
-        NameParser $nameParser,
+        FileNameParser $nameParser,
         Filesystem $filesystem
     ) {
         $this->finder = $finder;

@@ -37,10 +37,15 @@ class PathNamer implements PathNamerInterface
         return $result;
     }
 
+    public function generate(int $time, $name)
+    {
+        return $this->dateFilePath($time) . $this->nameSubFolder($name);
+    }
+
     public function fullPath($entity): string
     {
         $name = $entity->getFile();
         $time = $entity->getAdded()->getTimestamp();
-        return $this->dateFilePath($time) . $this->nameSubFolder($name);
+        return $this->generate($time, $name);
     }
 }

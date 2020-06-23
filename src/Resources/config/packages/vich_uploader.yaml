@@ -3,7 +3,7 @@ vich_uploader:
   storage: file_system
   mappings:
     uploads:
-      uri_prefix: '%path.uploads%'
+      uri_prefix: '%path.origin%'
       upload_destination: '%uploads_destination%'
       namer: 'upload_file_namer'
       directory_namer: 'upload_file_namer'

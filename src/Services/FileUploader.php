@@ -8,17 +8,21 @@ use FreedomSex\PhotoUploadBundle\Entity\FileInterface;
 use FreedomSex\PhotoUploadBundle\Services\FilterService;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Handler\UploadHandler;
+use Vich\UploaderBundle\Mapping\PropertyMapping;
+use Vich\UploaderBundle\Mapping\PropertyMappingFactory;
 
 class FileUploader
 {
     public function __construct(
         FilterService $filterService,
+        PropertyMappingFactory $propertyMapping,
 //        UploadHandler $uploadHandler,
         EntityManagerInterface $entityManager
     ) {
         $this->filterService = $filterService;
-//        $this->uploadHandler = $uploadHandler;
+        $this->propertyMapping = $propertyMapping;
         $this->entityManager = $entityManager;
+
     }
 
     public function upload(UploadedFile $file, FileInterface $entity)
@@ -41,5 +45,15 @@ class FileUploader
 
         $this->entityManager->persist($entity);
         $this->entityManager->flush();
+
+        return $entity;
+    }
+
+    public function relativeFilePath($entity)
+    {
+//        $mapping = $this->propertyMapping->
+//        return
+//            $this->propertyMapping->getUploadDir($entity).
+//            $this->propertyMapping->getUploadName($entity);
     }
 }

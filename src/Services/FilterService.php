@@ -52,6 +52,15 @@ class FilterService
         return $this->cacheManager->isStored($path, $filter);
     }
 
+//    public function image()
+//    {
+//        if ($this->stored($path, $filter)) {
+//            $this->cacheManager->;
+//        } else {
+//            return $this->handle($path, $filter);
+//        }
+//    }
+
     /**
      * @param $path
      * @param $filter
