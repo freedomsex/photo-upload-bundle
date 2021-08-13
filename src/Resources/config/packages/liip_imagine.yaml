@@ -20,7 +20,7 @@ liip_imagine:
 
   cache: default
   data_loader: default
-  default_image: '%path.uploads%thumbnail.png'
+  default_image: 'thumbnail.png'
 
   filter_sets:
     upload:
