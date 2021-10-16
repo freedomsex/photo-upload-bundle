@@ -5,10 +5,7 @@ namespace FreedomSex\PhotoUploadBundle\Services;
 
 use Doctrine\ORM\EntityManagerInterface;
 use FreedomSex\PhotoUploadBundle\Entity\FileInterface;
-use FreedomSex\PhotoUploadBundle\Services\FilterService;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Vich\UploaderBundle\Handler\UploadHandler;
-use Vich\UploaderBundle\Mapping\PropertyMapping;
 use Vich\UploaderBundle\Mapping\PropertyMappingFactory;
 
 class FileUploader
@@ -16,7 +13,6 @@ class FileUploader
     public function __construct(
         FilterService $filterService,
         PropertyMappingFactory $propertyMapping,
-//        UploadHandler $uploadHandler,
         EntityManagerInterface $entityManager
     ) {
         $this->filterService = $filterService;
@@ -28,20 +24,14 @@ class FileUploader
     public function upload(UploadedFile $file, FileInterface $entity)
     {
         $realPath = $file->getRealPath();
-        $image = $this->filterService->prepare($realPath);
-        $extension = $image->getFormat();
-
         [$width, $height] = getimagesize($realPath);
-        $sizes = [$width, $height];
-
-        $entity->setAdded(new \DateTime());
+        $extension = $file->guessExtension();
 
         $entity->setWidth($width);
         $entity->setHeight($height);
-
+        $entity->setAdded(new \DateTime());
         $entity->setExtension($extension);
         $entity->setImageFile($file);
-//        $this->uploadHandler->upload($entity, 'imageFile');
 
         $this->entityManager->persist($entity);
         $this->entityManager->flush();

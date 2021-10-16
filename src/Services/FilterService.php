@@ -30,7 +30,6 @@ class FilterService
      * @param DataManager     $dataManager
      * @param FilterManager   $filterManager
      * @param CacheManager    $cacheManager
-     * @param SignerInterface $signer
      */
     public function __construct(
         DataManager $dataManager,
@@ -68,7 +67,6 @@ class FilterService
      */
     public function image($path, $filter)
     {
-        $image = null;
         try {
             $image = $this->dataManager->find($filter, $path);
         } catch (NotLoadableException $e) {
@@ -128,7 +126,7 @@ class FilterService
     {
         $info = pathinfo($path);
         $image = $this->filteredImage($info['basename'], $filter);
-        file_put_contents($path, $image->getContent());
+//        file_put_contents($path, $image->getContent());
         return $image;
     }
 
