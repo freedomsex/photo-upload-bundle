@@ -64,12 +64,13 @@ class PhotoUploadExtension extends Extension implements PrependExtensionInterfac
         $config = $this->processConfiguration(new Configuration(), $configs);
 
         $preload = $this->loadBundleConfig('liip_imagine');
-//        $preload = $resolvingBag->resolveValue($preload);
+        $preload = $resolvingBag->resolveValue($preload);
 //        $preload['filter_sets']['upload']['jpeg_quality'] = $config['quality'];
 //        $preload['filter_sets']['upload']['filters']['downscale']['max'] = [$config['width'], $config['height']];
         $container->prependExtensionConfig('liip_imagine', $preload);
 
         $preload = $this->loadBundleConfig('vich_uploader');
+        $preload = $resolvingBag->resolveValue($preload);
 //        if (isset($config['namer'])) {
 //            $preload['mappings']['uploads']['namer'] = $config['namer'];
 //            $preload['mappings']['uploads']['directory_namer'] = $config['namer'];
