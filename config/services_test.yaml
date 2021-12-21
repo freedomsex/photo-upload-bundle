@@ -1,6 +1,6 @@
 
 parameters:
-  uploads_directory: "%kernel.project_dir%/tests/%path.uploads%"
+  photo_upload_bundle.uploads_directory: "%kernel.project_dir%/tests/%photo_upload_bundle.uploads%"
 
 services:
   _defaults:
@@ -14,4 +14,4 @@ services:
 #
   FreedomSex\PhotoUploadBundle\Services\FileLocator:
     arguments:
-      $destination: '%uploads_destination%'
+      $destination: '%photo_upload_bundle.uploads_destination%'

@@ -2,18 +2,18 @@ liip_imagine:
   resolvers:
     default:
       web_path:
-        web_root: "%uploads_directory%"
+        web_root: "%photo_upload_bundle.uploads_directory%"
         cache_prefix: 'cache'
 #    public:
 ##      web_path:
 #      filter_name:
-#        web_root: "%path.web%"
+#        web_root: "%photo_upload_bundle.web%"
 #        cache_prefix: 'media/image'
 
   loaders:
     default:
       filesystem:
-        data_root: "%uploads_destination%"
+        data_root: "%photo_upload_bundle.uploads_destination%"
     tmp_uploads:
       filesystem:
         data_root: "/tmp"
