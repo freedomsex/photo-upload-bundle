@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\Yaml\Yaml;
 
 
-class PhotoUploadExtension extends Extension
+class PhotoUploadExtension extends Extension implements PrependExtensionInterface
 {
 //    public function getAlias()
 //    {
@@ -54,33 +54,35 @@ class PhotoUploadExtension extends Extension
 //        //    $configs = $resolvingBag->resolveValue($configs);
 //        $config = $this->processConfiguration(new Configuration(), $configs);
 //    }
-//
-//    public function prepend(ContainerBuilder $container)
-//    {
-//        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
-//
-//        $configs = $container->getExtensionConfig($this->getAlias());
-//        $config = $this->processConfiguration(new Configuration(), $configs);
-//
-//        $preload = $this->parseYamlConfigFile('liip_imagine');
+
+    public function prepend(ContainerBuilder $container)
+    {
+        $configs = $container->getExtensionConfig($this->getAlias());
+        $resolvingBag = $container->getParameterBag(); // '%params%' in config/* files
+        $configs = $resolvingBag->resolveValue($configs);
+
+        $config = $this->processConfiguration(new Configuration(), $configs);
+
+        $preload = $this->loadBundleConfig('liip_imagine');
+//        $preload = $resolvingBag->resolveValue($preload);
 //        $preload['filter_sets']['upload']['jpeg_quality'] = $config['quality'];
 //        $preload['filter_sets']['upload']['filters']['downscale']['max'] = [$config['width'], $config['height']];
-//        $container->prependExtensionConfig('liip_imagine', $preload);
-//
-//        $preload = $this->parseYamlConfigFile('vich_uploader');
+        $container->prependExtensionConfig('liip_imagine', $preload);
+
+        $preload = $this->loadBundleConfig('vich_uploader');
 //        if (isset($config['namer'])) {
 //            $preload['mappings']['uploads']['namer'] = $config['namer'];
 //            $preload['mappings']['uploads']['directory_namer'] = $config['namer'];
 //        }
-//        $container->prependExtensionConfig('vich_uploader', $preload);
-//    }
-//
-//    public function parseYamlConfigFile($name)
-//    {
-//        $fileLocator = new FileLocator(__DIR__ . '/../../config/packages');
-//        $file = $fileLocator->locate("$name.yaml");
-//        return Yaml::parseFile($file)[$name];
-//    }
+        $container->prependExtensionConfig('vich_uploader', $preload);
+    }
+
+    public function loadBundleConfig($name)
+    {
+        $fileLocator = new FileLocator(__DIR__ . '/../../config/packages');
+        $file = $fileLocator->locate("$name.yaml");
+        return Yaml::parseFile($file)[$name];
+    }
 
 
 }
