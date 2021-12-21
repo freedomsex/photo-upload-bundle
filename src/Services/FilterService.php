@@ -116,13 +116,7 @@ class FilterService
         return $this->relativeUrl($result);
     }
 
-    /**
-     *
-     * @param type $path
-     * @param type $filter
-     * @return BinaryInterface
-     */
-    public function prepare($path, $filter='upload')
+    public function prepare($path, $filter='upload'): BinaryInterface
     {
         $info = pathinfo($path);
         $image = $this->filteredImage($info['basename'], $filter);

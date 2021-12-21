@@ -24,13 +24,16 @@ liip_imagine:
 
   filter_sets:
     upload:
-      jpeg_quality: 80
+      jpeg_quality: '%photo_upload_bundle.quality%'
       format: jpg
       data_loader: tmp_uploads
       filters:
         strip: ~
         downscale:
-          max: [600, 800]
+          max: [
+            '%photo_upload_bundle.width%',
+            '%photo_upload_bundle.height%'
+          ]
 
     thumbnail:
       format: png
