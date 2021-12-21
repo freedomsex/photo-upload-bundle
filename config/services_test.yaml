@@ -1,0 +1,17 @@
+
+parameters:
+  uploads_directory: "%kernel.project_dir%/tests/%path.uploads%"
+
+services:
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+    public: true
+#
+#  FreedomSex\PhotoUploadBundle\:
+#    resource: '../src/'
+#    exclude: '../src/{DependencyInjection,Entity}'
+#
+  FreedomSex\PhotoUploadBundle\Services\FileLocator:
+    arguments:
+      $destination: '%uploads_destination%'

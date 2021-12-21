@@ -10,11 +10,10 @@ use FreedomSex\PhotoUploadBundle\Services\Naming\FileNameParser;
 class TrashService
 {
     public function __construct(
-        Finder $finder,
         FileNameParser $nameParser,
         Filesystem $filesystem
     ) {
-        $this->finder = $finder;
+        $this->finder = new Finder();
         $this->nameParser = $nameParser;
         $this->filesystem = $filesystem;
     }

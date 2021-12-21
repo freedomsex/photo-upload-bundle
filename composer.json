@@ -4,20 +4,36 @@
     "license": "GPL-3.0-or-later",
     "repositories": [],
     "require": {
-        "php": "^7.1.0",
+        "php": "^7.4",
+        "doctrine/orm": "^2.10",
+        "doctrine/doctrine-bundle": "^2.4",
         "liip/imagine-bundle": "~2.1",
-        "vich/uploader-bundle": "~1.9"
+        "symfony/config": "^5.0",
+        "symfony/console": "^5.0",
+        "symfony/http-kernel": "^5.0",
+        "symfony/dependency-injection": "^5.0",
+        "symfony/framework-bundle": "^5.0",
+        "symfony/runtime": "^5.0",
+        "symfony/dotenv": "^5.0",
+        "symfony/flex": "^1.17",
+        "vich/uploader-bundle": "~1.9",
+        "symfony/yaml": "^5.0",
+        "symfony/finder": "^5.0"
     },
     "require-dev": {
-        "symfony/framework-bundle": "^4.4.0",
-        "symfony/console": "^4.0",
-        "symfony/debug-bundle": "^4.0",
-        "symfony/maker-bundle": "^1.15",
-        "symfony/phpunit-bridge": "^4.0",
-        "symfony/test-pack": "^1.0",
-        "symfony/var-dumper": "^4.0",
-        "symfony/dotenv": "^4.0",
-        "symfony/yaml": "^4.0"
+        "dama/doctrine-test-bundle": "^6.7",
+        "deployer/deployer": "^6.8",
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "phpunit/phpunit": "^9.5",
+        "symfony/debug-bundle": "^5.0",
+        "symfony/maker-bundle": "^1.36",
+        "symfony/stopwatch": "^5.0",
+        "symfony/browser-kit": "^5.0",
+        "symfony/css-selector": "^5.0",
+        "symfony/phpunit-bridge": "^6.0",
+        "symfony/web-profiler-bundle": "^5.0",
+        "symfony/web-server-bundle": "^4.4",
+        "zenstruck/foundry": "^1.14"
     },
     "autoload": {
         "psr-4": {
@@ -29,9 +45,10 @@
             "FreedomSex\\PhotoUploadBundle\\Tests\\": "tests/"
         }
     },
-    "extra": {
-        "symfony": {
-            "require": "4.4.*"
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
         }
     }
 }

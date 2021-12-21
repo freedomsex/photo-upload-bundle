@@ -1,0 +1,45 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+  path.media: 'media'
+  path.uploads: '%path.media%/uploads'
+  path.origin: 'origin'
+  path.thumb: 'thumb'
+  path.web: '%kernel.project_dir%/public'
+  path.shared: '%kernel.project_dir%/../shared'
+
+  uploads_directory: "%kernel.project_dir%/%path.uploads%"
+  uploads_destination: "%uploads_directory%/%path.origin%"
+
+  env(ALL_PRIVATE_SERVICES_PUBLIC): 'false'
+
+services:
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+    public: '%env(bool:ALL_PRIVATE_SERVICES_PUBLIC)%'
+
+  FreedomSex\PhotoUploadBundle\:
+    resource: '../src/'
+    exclude: '../src/{DependencyInjection,Entity,Kernel.php}'
+
+  upload_file_namer:
+    class: FreedomSex\PhotoUploadBundle\Services\Naming\VichNaming\UploadFileNamer
+    public: true
+
+  Liip\ImagineBundle\Service\FilterService: '@liip_imagine.service.filter'
+
+  FreedomSex\PhotoUploadBundle\Services\FilterNameResolver:
+    arguments:
+      $webRootDir: '%path.web%'
+      $cachePrefix: 'media/image'
+    tags:
+      - { name: "liip_imagine.cache.resolver", resolver: filter_name }
+
+  FreedomSex\PhotoUploadBundle\Services\FileLocator:
+    arguments:
+      $destination: '%uploads_destination%'
+
