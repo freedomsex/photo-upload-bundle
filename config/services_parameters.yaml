@@ -1,0 +1,49 @@
+## This file is the entry point to configure your own services.
+## Files in the packages/ subdirectory configure your dependencies.
+#
+## Put parameters here that don't need to change on each machine where the app is deployed
+## https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+#parameters:
+#  photo_upload_bundle.quality: 80
+#  photo_upload_bundle.width: 600
+#  photo_upload_bundle.height: 800
+#
+#  photo_upload_bundle.media: 'media'
+#  photo_upload_bundle.uploads: '%photo_upload_bundle.media%/uploads'
+#  photo_upload_bundle.origin: 'origin'
+#  photo_upload_bundle.thumb: 'thumb'
+#  photo_upload_bundle.web: '%kernel.project_dir%/public'
+#  photo_upload_bundle.shared: '%kernel.project_dir%/../shared'
+#
+#  photo_upload_bundle.uploads_directory: "%kernel.project_dir%/%photo_upload_bundle.uploads%"
+#  photo_upload_bundle.uploads_destination: "%photo_upload_bundle.uploads_directory%/%photo_upload_bundle.origin%"
+#
+#  env(ALL_PRIVATE_SERVICES_PUBLIC): 'false'
+#
+#services:
+#  _defaults:
+#    autowire: true      # Automatically injects dependencies in your services.
+#    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+#    public: '%env(bool:ALL_PRIVATE_SERVICES_PUBLIC)%'
+#
+#  FreedomSex\PhotoUploadBundle\:
+#    resource: '../src/'
+#    exclude: '../src/{DependencyInjection,Entity,Kernel.php}'
+#
+#  upload_file_namer:
+#    class: FreedomSex\PhotoUploadBundle\Services\Naming\VichNaming\UploadFileNamer
+#    public: true
+#
+#  Liip\ImagineBundle\Service\FilterService: '@liip_imagine.service.filter'
+#
+#  FreedomSex\PhotoUploadBundle\Services\FilterNameResolver:
+#    arguments:
+#      $webRootDir: '%photo_upload_bundle.web%'
+#      $cachePrefix: 'media/image'
+#    tags:
+#      - { name: "liip_imagine.cache.resolver", resolver: filter_name }
+#
+#  FreedomSex\PhotoUploadBundle\Services\FileLocator:
+#    arguments:
+#      $destination: '%photo_upload_bundle.uploads_destination%'
+#

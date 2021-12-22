@@ -21,15 +21,18 @@ class PhotoUploadExtension extends Extension implements PrependExtensionInterfac
 //    {
 //        return 'photo_upload';
 //    }
-
+    public function loadServices(ContainerBuilder $container, $filename = 'services.yaml')
+    {
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
+        $loader->load('services.yaml');
+    }
 
     /**
      * {@inheritdoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../../config'));
-        $loader->load('services.yaml');
+        $this->loadServices($container);
 
         $config = $this->processConfiguration(new Configuration(), $configs);
 
@@ -57,11 +60,11 @@ class PhotoUploadExtension extends Extension implements PrependExtensionInterfac
 
     public function prepend(ContainerBuilder $container)
     {
+        $this->loadServices($container);
+
         $configs = $container->getExtensionConfig($this->getAlias());
         $resolvingBag = $container->getParameterBag(); // '%params%' in config/* files
-        $configs = $resolvingBag->resolveValue($configs);
-
-        $config = $this->processConfiguration(new Configuration(), $configs);
+//        $configs = $resolvingBag->resolveValue($configs);
 
         $preload = $this->loadBundleConfig('liip_imagine');
         $preload = $resolvingBag->resolveValue($preload);
@@ -71,6 +74,8 @@ class PhotoUploadExtension extends Extension implements PrependExtensionInterfac
 
         $preload = $this->loadBundleConfig('vich_uploader');
         $preload = $resolvingBag->resolveValue($preload);
+
+//        dump($preload);
 //        if (isset($config['namer'])) {
 //            $preload['mappings']['uploads']['namer'] = $config['namer'];
 //            $preload['mappings']['uploads']['directory_namer'] = $config['namer'];

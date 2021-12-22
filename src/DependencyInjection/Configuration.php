@@ -25,6 +25,18 @@ class Configuration implements ConfigurationInterface
                 ->integerNode('quality')->defaultValue(80)->end()
                 ->integerNode('width')->defaultValue(600)->end()
                 ->integerNode('height')->defaultValue(800)->end()
+
+
+                ->arrayNode('path')
+//                    ->children()
+//                        ->scalarNode('media')->end()
+//                        ->scalarNode('origin')->end()
+//                        ->scalarNode('thumb')->end()
+//                        ->scalarNode('')->end()
+//                        ->scalarNode('')->end()
+//                        ->scalarNode('')->end()
+//                        ->scalarNode('')->end()
+//                    ->end()
 //                ->variableNode('namer')->end()
             ->end();
 
