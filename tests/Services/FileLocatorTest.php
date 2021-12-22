@@ -34,4 +34,11 @@ class FileLocatorTest extends BaseTestSetUp
         echo $this->object->absolutePath($this->name);
         self::assertNotNull($this->object->fileExists($this->name));
     }
+
+    public function testFileNotExist()
+    {
+        $some_name = '8e227e720_1080x1080_1640106378.txt';
+        echo $this->object->absolutePath($some_name);
+        self::assertNull($this->object->fileExists($some_name));
+    }
 }
