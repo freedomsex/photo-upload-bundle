@@ -17,20 +17,25 @@ class FileLocator
         $this->pathInverter = $pathInverter;
     }
 
-    public function dest()
+    public function destinationPath()
     {
         return $this->destination;
     }
 
-    public function locate($fileName): string
+    public function relativePath($fileName): string
     {
-        $path = $this->pathInverter->fullPath($fileName);
-        return $this->destination.'/'.$path;
+        return $this->pathInverter->fullPath($fileName);
+    }
+
+    public function absolutePath($fileName): string
+    {
+        $path = $this->relativePath($fileName);
+        return $this->destinationPath().'/'.$path;
     }
 
     public function exist($fileName): ?string
     {
-        $fullPath = $this->locate($fileName);
+        $fullPath = $this->absolutePath($fileName);
         if (!file_exists($fullPath)) {
             return null;
         }
