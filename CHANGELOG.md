@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.5](https://github.com/freedomsex/photo-upload-bundle/compare/1.1.4...1.1.5) (2021-12-22)
+
+
+### Bug Fixes
+
+* relative ([0b62c91](https://github.com/freedomsex/photo-upload-bundle/commit/0b62c91e02a27ad0b219ab3bb5aca0dbcaf9c4a3))
+
 ### [1.1.4](https://github.com/freedomsex/photo-upload-bundle/compare/1.1.3...1.1.4) (2021-12-22)
 
 
