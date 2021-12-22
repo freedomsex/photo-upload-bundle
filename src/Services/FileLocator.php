@@ -33,7 +33,7 @@ class FileLocator
         return $this->destinationPath().'/'.$path;
     }
 
-    public function exist($fileName): ?string
+    public function fileExists($fileName): ?string
     {
         $fullPath = $this->absolutePath($fileName);
         if (!file_exists($fullPath)) {

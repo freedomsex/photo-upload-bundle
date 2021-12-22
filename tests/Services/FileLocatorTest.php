@@ -18,20 +18,20 @@ class FileLocatorTest extends BaseTestSetUp
         $this->path = '2021/12/21/74/7487bc051_1080x1219_1640106918.txt';
     }
 
-    public function testDest()
+    public function testDestinationPath()
     {
         self::assertNotNull($this->object->destinationPath());
     }
 
-    public function testLocate()
+    public function testAbsolutePath()
     {
         $path = $this->object->absolutePath($this->name);
         self::assertEquals($this->object->destinationPath().'/'.$this->path, $path);
     }
 
-    public function testExist()
+    public function testFileExist()
     {
         echo $this->object->absolutePath($this->name);
-        self::assertNotNull($this->object->exist($this->name));
+        self::assertNotNull($this->object->fileExists($this->name));
     }
 }
