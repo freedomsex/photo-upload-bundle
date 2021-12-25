@@ -28,7 +28,12 @@ services:
 
   FreedomSex\PhotoUploadBundle\:
     resource: '../src/'
-    exclude: '../src/{DependencyInjection,Entity,Kernel.php}'
+    exclude:
+      - '../src/DependencyInjection/'
+      - '../src/Entity/'
+      - '../src/DataFixtures/'
+      - '../src/Factory/'
+      - '../src/Kernel.php'
 
   upload_file_namer:
     class: FreedomSex\PhotoUploadBundle\Services\Naming\VichNaming\UploadFileNamer
